@@ -19,20 +19,4 @@ for (const cookie of cookies) {
   } else if (name.trim() === "fontcolor") {
     document.documentElement.style.setProperty("--fontcolor", `${value}`);
   }
-} Event listener for form submission
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    // Get user preferences
-    const fontSize = fontSizeInput.value;
-    const fontColor = fontColorInput.value;
-
-    // Store preferences as cookies
-    document.cookie = `fontSize=${fontSize}; max-age=31536000`; // Max-age set to 1 year
-    document.cookie = `fontColor=${fontColor}; max-age=31536000`; // Max-age set to 1 year
-
-    // Apply preferences to the page
-    document.body.style.fontSize = fontSize + "px";
-    document.body.style.color = fontColor;
-  });
-});
+}
