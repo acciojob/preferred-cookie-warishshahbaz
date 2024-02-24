@@ -1,26 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Get form elements
   const form = document.getElementById("preferences-form");
   const fontSizeInput = document.getElementById("fontsize");
   const fontColorInput = document.getElementById("fontcolor");
 
+  // Function to get a specific cookie
+  function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+
   // Set initial values from cookies, if available
-  if (document.cookie) {
-    const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
-      const [name, value] = cookie.split("=");
-      acc[name] = value;
-      return acc;
-    }, {});
+  const fontSizeCookie = getCookie("fontSize");
+  const fontColorCookie = getCookie("fontColor");
 
-    if (cookies["fontSize"]) {
-      fontSizeInput.value = cookies["fontSize"];
-      document.body.style.fontSize = cookies["fontSize"] + "px";
-    }
+  if (fontSizeCookie) {
+    fontSizeInput.value = fontSizeCookie;
+    document.body.style.fontSize = fontSizeCookie + "px";
+  }
 
-    if (cookies["fontColor"]) {
-      fontColorInput.value = cookies["fontColor"];
-      document.body.style.color = cookies["fontColor"];
-    }
+  if (fontColorCookie) {
+    fontColorInput.value = fontColorCookie;
+    document.body.style.color = fontColorCookie;
   }
 
   // Event listener for form submission
